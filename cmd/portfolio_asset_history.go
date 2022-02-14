@@ -33,7 +33,7 @@ var portfolioAssetHistoryCmd = &cobra.Command{
 	Long: `Retrieve portfolio asset history for a **single** asset. The asset must be in its numerical 'id' state.
 
 To ascertain the 'id' of a given asset from its human-readable name you can run the following search:
-	swyftx markets info basic BTC
+	swyftx-cli markets info basic BTC
 
 Defaults to getting the asset history for BTC if no '--asset' flag is supplied
 `,

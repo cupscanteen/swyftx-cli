@@ -29,7 +29,7 @@ var marketsInfoCmd = &cobra.Command{
 	Short: "Basic information about assets. If left blank will show **all** assets traded on Swyftx.",
 	Long: `Retrieve basic information about a tradable asset on Swyftx. 
 
-If no asset is provided, all assets are returned..
+If no asset is provided, all assets are returned.
 `,
 	RunE: marketInfoBasic,
 }

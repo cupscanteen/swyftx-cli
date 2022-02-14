@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/cupscanteen/swyftx/cmd"
+import "github.com/cupscanteen/swyftx-cli/cmd"
 
 func main() {
 	cmd.Execute()

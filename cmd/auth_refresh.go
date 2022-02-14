@@ -32,7 +32,7 @@ Request a new Access Token from Swyftx using the API key provided during authent
 
 This command will fail if the API key has been added to the configuration file. To set the API key run:
 
-	'swyftx authenticate --apiKey <key>'
+	'swyftx-cli authenticate --apiKey <key>'
 
 The Access Token expires after one week so this command must be run periodically.
 `,
@@ -78,5 +78,5 @@ func refreshToken() {
 	}
 
 	fmt.Println("Access Token successfully saved. You can now use this application to call Swyftx.")
-	fmt.Println("The token will expire in one week. To renew the token run 'swyftx authenticate refresh'.")
+	fmt.Println("The token will expire in one week. To renew the token run 'swyftx-cli authenticate refresh'.")
 }

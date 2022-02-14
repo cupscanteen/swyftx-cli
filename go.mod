@@ -1,4 +1,4 @@
-module github.com/cupscanteen/swyftx
+module github.com/cupscanteen/swyftx-cli
 
 go 1.17
 
