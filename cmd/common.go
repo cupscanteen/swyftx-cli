@@ -34,13 +34,15 @@ func printer(i interface{}) string {
 	return string(js)
 }
 
-func errCheck401(s string) {
+func errCheck401(s string) bool {
 	match, _ := regexp.MatchString("status: 401", s)
 	if match {
 		fmt.Println("401 Unauthorized error. You may need to refresh the Access Token")
 		fmt.Println("To refresh run: 'excellerate authenticate refresh'")
 		fmt.Println("If you have not set the 'apikey' by running 'excellerate authenticate --apikey <apikey>' you will need to do this before continuing.")
+		return true
 	}
+	return false
 }
 
 func assetPrinter(result AssetHistoryAll, prettify bool) string {

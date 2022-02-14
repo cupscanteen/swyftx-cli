@@ -92,6 +92,9 @@ func requestSingleAsset(token string) (AssetHistoryAll, error) {
 		Fetch(context.Background())
 	if err != nil {
 		errCheck401(err.Error())
+		if !errCheck401(err.Error()) {
+			fmt.Println(err.Error())
+		}
 		os.Exit(-1)
 	}
 	return result, nil
