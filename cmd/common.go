@@ -42,3 +42,10 @@ func errCheck401(s string) {
 		fmt.Println("If you have not set the 'apikey' by running 'excellerate authenticate --apikey <apikey>' you will need to do this before continuing.")
 	}
 }
+
+func assetPrinter(result AssetHistoryAll, prettify bool) string {
+	if prettify {
+		return prettyPrint(result)
+	}
+	return printer(result)
+}

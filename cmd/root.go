@@ -22,7 +22,29 @@ import (
 	"os"
 )
 
-var cfgFile string
+var (
+	// Global flags
+	cfgFile string
+	debug   bool
+
+	// Universal flags for many commands but NOT global
+	assetId string
+	// Query params
+	page          string
+	limit         string
+	sortKey       string
+	sortDirection string
+	startDate     string
+	endDate       string
+	orderType     string
+	orderStatus   string
+
+	// Output options
+	// pretty will format to Stdout with prettified tab spacing
+	pretty bool
+	// fileType determines the output file type when using the --output option
+	output string
+)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -49,6 +71,7 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.excellerate.yaml)")
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "", false, "Debug verbose output")
 
 }
 
@@ -79,7 +102,9 @@ func initConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+		if debug {
+			fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+		}
 	}
 
 }
