@@ -38,8 +38,8 @@ func errCheck401(s string) bool {
 	match, _ := regexp.MatchString("status: 401", s)
 	if match {
 		fmt.Println("401 Unauthorized error. You may need to refresh the Access Token")
-		fmt.Println("To refresh run: 'excellerate authenticate refresh'")
-		fmt.Println("If you have not set the 'apikey' by running 'excellerate authenticate --apikey <apikey>' you will need to do this before continuing.")
+		fmt.Println("To refresh run: 'swyftx authenticate refresh'")
+		fmt.Println("If you have not set the 'apikey' by running 'swyftx authenticate --apikey <apikey>' you will need to do this before continuing.")
 		return true
 	}
 	return false

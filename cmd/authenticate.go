@@ -40,9 +40,9 @@ This command allows you to register a Swyftx API key for use in this CLI. You ca
 
 The API key will be saved locally to your device and used to fetch refresh tokens from Swyftx for use in other endpoints.
 
-Excellerate must have an API Key registered before it can access any Swyftx endpoints.
+'swyftx' must have an API Key registered before it can access any Swyftx endpoints.
 `,
-	Example: "excellerate authenticate --apikey abc123",
+	Example: "swyftx authenticate --apikey abc123",
 	//Run: func(cmd *cobra.Command, args []string) {
 	//	fmt.Println("authenticate called with " + authApiKey)
 	//},

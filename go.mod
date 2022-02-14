@@ -1,4 +1,4 @@
-module github.com/cupscanteen/excellerate
+module github.com/cupscanteen/swyftx
 
 go 1.17
 

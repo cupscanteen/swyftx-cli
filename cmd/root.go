@@ -30,9 +30,13 @@ var (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "excellerate",
-	Short: "excellerate is a command line interface (CLI) for the Swyftx API.",
-	Long:  `excellerate is a command line interface (CLI) for the Swyftx API.`,
+	Use:   "swyftx",
+	Short: "swyftx is a command line interface (CLI) for the Swyftx API.",
+	Long: `swyftx is a command line interface (CLI) for the Swyftx API.
+
+This CLI uses the Swyftx API for all queries using a mixture of authenticated and unauthenticated endpoints. Subcommands which
+require authentication will fail if the 'authenticate' subcommand has not been initialized or if the Access Token has expired.
+`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -52,7 +56,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.excellerate.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.swyftx.yaml)")
 	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "", false, "Debug verbose output")
 
 }
@@ -62,7 +66,7 @@ func initConfig() {
 	// Find home directory.
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)
-	configName := ".excellerate"
+	configName := ".swyftx"
 	configType := "yaml"
 
 	configPath := fmt.Sprintf("%s/%s.%s", home, configName, configType)
@@ -74,7 +78,7 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Search config in home directory with name ".excellerate" (without extension).
+		// Search config in home directory with name ".swyftx" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigName(configName)
 		viper.SetConfigType(configType)

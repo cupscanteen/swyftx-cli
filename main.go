@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/cupscanteen/excellerate/cmd"
+import "github.com/cupscanteen/swyftx/cmd"
 
 func main() {
 	cmd.Execute()
