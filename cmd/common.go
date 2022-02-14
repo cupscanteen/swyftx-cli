@@ -51,3 +51,22 @@ func assetPrinter(result AssetHistoryAll, prettify bool) string {
 	}
 	return printer(result)
 }
+
+func basicInfoPrinter(result MarketsInfoBasic, prettify bool) string {
+	if prettify {
+		return prettyPrint(result)
+	}
+	return printer(result)
+}
+func detailInfoPrinter(result MarketsInfoDetail, prettify bool) string {
+	if prettify {
+		return prettyPrint(result)
+	}
+	return printer(result)
+}
+func liveRatesPrinter(result LiveRates, prettify bool) string {
+	if prettify {
+		return prettyPrint(result)
+	}
+	return printer(result)
+}

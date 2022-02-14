@@ -16,36 +16,62 @@ limitations under the License.
 package cmd
 
 import (
+	"context"
 	"fmt"
-
+	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
+	"os"
 )
 
-// liveCmd represents the live command
-var liveCmd = &cobra.Command{
-	Use:   "live",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+var liveRatesAssetId string
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("live called")
-	},
+var liveRatesCmd = &cobra.Command{
+	Use:   "live",
+	Short: "Current prices for all assets against asset. Currently only supported for AUD, USD and BTC",
+	Long: `Current prices for an asset. Only AUD, USD and BTC comparison rates are supported.
+
+Only accepts the following as valid ID's
+	1:  AUD
+	3:  BTC
+	36: USD(t)
+`,
+	RunE: marketLiveRates,
 }
 
 func init() {
-	marketsCmd.AddCommand(liveCmd)
+	marketsCmd.AddCommand(liveRatesCmd)
 
-	// Here you will define your flags and configuration settings.
+	// Asset to query
+	liveRatesCmd.Flags().StringVarP(&liveRatesAssetId, "asset", "a", "1", "Asset by ID which should be queried. Must be in 'id' format, not name. Accepts 1:AUD, 3:BTC or 36:USD(t)")
+	liveRatesCmd.MarkFlagRequired("asset")
+	// Helpers
+	liveRatesCmd.Flags().BoolVarP(&infoPretty, "pretty", "", false, "Pretty print the response")
+	liveRatesCmd.Flags().StringVarP(&infoOutput, "output", "o", "csv", "Write the output to a file. Options: csv **coming soon**")
+}
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// liveCmd.PersistentFlags().String("foo", "", "A help for foo")
+func marketLiveRates(cmd *cobra.Command, args []string) error {
 
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// liveCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	result, err := requestLiveRates()
+	cobra.CheckErr(err)
+
+	stdout := liveRatesPrinter(result, infoPretty)
+	fmt.Println(stdout)
+	return nil
+}
+
+func requestLiveRates() (LiveRates, error) {
+	var result LiveRates
+	url := fmt.Sprintf("/live-rates/%s/", liveRatesAssetId)
+	err := requests.
+		URL(url).
+		Host(SwyftxAPI).
+		ContentType("application/json").
+		ToJSON(&result).
+		CheckStatus(200).
+		Fetch(context.Background())
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(-1)
+	}
+	return result, nil
 }

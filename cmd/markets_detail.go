@@ -16,36 +16,52 @@ limitations under the License.
 package cmd
 
 import (
+	"context"
 	"fmt"
-
+	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 // detailCmd represents the detail command
 var detailCmd = &cobra.Command{
 	Use:   "detail",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Detailed information about assets. If parameter left blank, returns all traded assets on Swyftx.",
+	Long: `Retrieve detailed information about a tradable asset on Swyftx.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("detail called")
-	},
+If no asset is provided, all assets are returned.`,
+	RunE: marketInfoDetail,
 }
 
 func init() {
 	marketsCmd.AddCommand(detailCmd)
+}
+func marketInfoDetail(cmd *cobra.Command, args []string) error {
 
-	// Here you will define your flags and configuration settings.
+	result, err := requestInfoDetail()
+	cobra.CheckErr(err)
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// detailCmd.PersistentFlags().String("foo", "", "A help for foo")
+	stdout := detailInfoPrinter(result, infoPretty)
+	fmt.Println(stdout)
+	return nil
+}
 
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// detailCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+func requestInfoDetail() (MarketsInfoDetail, error) {
+	var result MarketsInfoDetail
+	url := fmt.Sprintf("/markets/info/detail/%s/", infoAssetId)
+	if infoAssetId == "" {
+		url = "/markets/info/detail/"
+	}
+	err := requests.
+		URL(url).
+		Host(SwyftxAPI).
+		ContentType("application/json").
+		ToJSON(&result).
+		CheckStatus(200).
+		Fetch(context.Background())
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(-1)
+	}
+	return result, nil
 }

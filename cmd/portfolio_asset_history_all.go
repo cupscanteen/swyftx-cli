@@ -37,17 +37,17 @@ var portfolioAssetHistoryAllCmd = &cobra.Command{
 func init() {
 	portfolioAssetHistoryCmd.AddCommand(portfolioAssetHistoryAllCmd)
 	// Query params
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&limit, "limit", "l", "20", "Number of orders to display in a single page")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&page, "page", "p", "1", "Page to display of paginated orders")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&sortKey, "sort-key", "k", "date", "Return orders by {date,amount,userCountryValue}. Defaults to date")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&sortDirection, "sort-direction", "d", "ASC", "Sort direction, default is ASC. Options: {ASC|DSC}")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&orderType, "order-type", "t", "", "Returns only a single order type. Defaults to all. Options: {BUY,SELL,WITHDRAWAL,DEPOSIT}")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&orderStatus, "order-status", "s", "", "Returns only a single order by status. Defaults to all status types. Options: {PENDING, COMPLETED, FAILED}")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&startDate, "start-date", "", "", "Only return results from after a timestamp. Expects unix time. Defaults to none.")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&endDate, "end-date", "", "", "Only return results from after a timestamp. Expects unix time. Defaults to none.")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioLimit, "limit", "l", "20", "Number of orders to display in a single page")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioPage, "page", "p", "1", "Page to display of paginated orders")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioSortKey, "sort-key", "k", "date", "Return orders by {date,amount,userCountryValue}. Defaults to date")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioSortDirection, "sort-direction", "d", "ASC", "Sort direction, default is ASC. Options: {ASC|DSC}")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioOrderType, "order-type", "t", "", "Returns only a single order type. Defaults to all. Options: {BUY,SELL,WITHDRAWAL,DEPOSIT}")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioOrderStatus, "order-status", "s", "", "Returns only a single order by status. Defaults to all status types. Options: {PENDING, COMPLETED, FAILED}")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioStartDate, "start-date", "", "", "Only return results from after a timestamp. Expects unix time. Defaults to none.")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioEndDate, "end-date", "", "", "Only return results from after a timestamp. Expects unix time. Defaults to none.")
 	// Output options
-	portfolioAssetHistoryAllCmd.Flags().BoolVarP(&pretty, "pretty", "", false, "Pretty print the response")
-	portfolioAssetHistoryAllCmd.Flags().StringVarP(&output, "output", "o", "csv", "Write the output to a file. Options: csv **coming soon**")
+	portfolioAssetHistoryAllCmd.Flags().BoolVarP(&portfolioPretty, "pretty", "", false, "Pretty print the response")
+	portfolioAssetHistoryAllCmd.Flags().StringVarP(&portfolioOutput, "output", "o", "csv", "Write the output to a file. Options: csv **coming soon**")
 }
 
 func portfolioAssetsHistoryAll(cmd *cobra.Command, args []string) error {
@@ -57,7 +57,7 @@ func portfolioAssetsHistoryAll(cmd *cobra.Command, args []string) error {
 	cobra.CheckErr(err)
 
 	// Print to stdout
-	stdout := assetPrinter(result, pretty)
+	stdout := assetPrinter(result, portfolioPretty)
 	fmt.Println(stdout)
 
 	return nil
@@ -67,14 +67,14 @@ func requestAllAssets(token string) (AssetHistoryAll, error) {
 	var result AssetHistoryAll
 	err := requests.
 		URL("/portfolio/assethistory/all/").
-		Param("limit", limit).
-		Param("page", page).
-		Param("type", orderType).
-		Param("status", orderStatus).
-		Param("sortDirection", sortDirection).
-		Param("sortKey", sortKey).
-		Param("startDate", startDate).
-		Param("endDate", endDate).
+		Param("limit", portfolioLimit).
+		Param("page", portfolioPage).
+		Param("type", portfolioOrderType).
+		Param("status", portfolioOrderStatus).
+		Param("sortDirection", portfolioSortDirection).
+		Param("sortKey", portfolioSortKey).
+		Param("startDate", portfolioStartDate).
+		Param("endDate", portfolioEndDate).
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		Header("Authorization", fmt.Sprintf("Bearer %s", token)).

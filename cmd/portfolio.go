@@ -19,6 +19,24 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	// Query params
+	portfolioAssetId       string
+	portfolioPage          string
+	portfolioLimit         string
+	portfolioSortKey       string
+	portfolioSortDirection string
+	portfolioStartDate     string
+	portfolioEndDate       string
+	portfolioOrderType     string
+	portfolioOrderStatus   string
+
+	// pretty will format to Stdout with prettified tab spacing
+	portfolioPretty bool
+	// fileType determines the output file type when using the --output option
+	portfolioOutput string
+)
+
 // portfolioCmd represents the portfolio command
 var portfolioCmd = &cobra.Command{
 	Use:   "portfolio",

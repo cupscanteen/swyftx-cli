@@ -20,6 +20,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	infoAssetId string
+	// Helpers
+	infoPretty bool
+	infoOutput string
+)
+
 // marketsCmd represents the markets command
 var marketsCmd = &cobra.Command{
 	Use:   "markets",

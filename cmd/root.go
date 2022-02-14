@@ -26,24 +26,6 @@ var (
 	// Global flags
 	cfgFile string
 	debug   bool
-
-	// Universal flags for many commands but NOT global
-	assetId string
-	// Query params
-	page          string
-	limit         string
-	sortKey       string
-	sortDirection string
-	startDate     string
-	endDate       string
-	orderType     string
-	orderStatus   string
-
-	// Output options
-	// pretty will format to Stdout with prettified tab spacing
-	pretty bool
-	// fileType determines the output file type when using the --output option
-	output string
 )
 
 // rootCmd represents the base command when called without any subcommands
