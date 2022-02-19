@@ -1,5 +1,7 @@
 package cmd
 
+type MarketsInfoBasicDTO []MarketsInfoBasic
+
 type AssetHistoryAll struct {
 	Items []struct {
 		Date             int64  `json:"date"`
@@ -20,7 +22,7 @@ type AssetHistoryAll struct {
 	RecordCount int `json:"recordCount"`
 }
 
-type MarketsInfoBasic []struct {
+type MarketsInfoBasic struct {
 	Name      string  `json:"name"`
 	AltName   string  `json:"altName"`
 	Code      string  `json:"code"`
