@@ -48,7 +48,7 @@ func marketInfoBasic(cmd *cobra.Command, args []string) error {
 	result, err := requestBasicInfo()
 	cobra.CheckErr(err)
 
-	stdout := basicInfoPrinter(result, infoPretty)
+	stdout := GenericPrinter(result, infoPretty)
 	fmt.Println(stdout)
 	return nil
 }

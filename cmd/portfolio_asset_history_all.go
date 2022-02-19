@@ -57,7 +57,7 @@ func portfolioAssetsHistoryAll(cmd *cobra.Command, args []string) error {
 	cobra.CheckErr(err)
 
 	// Print to stdout
-	stdout := assetPrinter(result, portfolioPretty)
+	stdout := GenericPrinter(result, portfolioPretty)
 	fmt.Println(stdout)
 
 	return nil

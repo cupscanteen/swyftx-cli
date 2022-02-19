@@ -24,16 +24,6 @@ import (
 
 const SwyftxAPI = "api.swyftx.com.au"
 
-func prettyPrint(i interface{}) string {
-	js, _ := json.MarshalIndent(i, "", "\t")
-	return string(js)
-}
-
-func printer(i interface{}) string {
-	js, _ := json.Marshal(i)
-	return string(js)
-}
-
 func errCheck401(s string) bool {
 	match, _ := regexp.MatchString("status: 401", s)
 	if match {
@@ -45,28 +35,17 @@ func errCheck401(s string) bool {
 	return false
 }
 
-func assetPrinter(result AssetHistoryAll, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
+func GenericPrinter(r interface{}, p bool) string {
+	if p {
+		PrettyPrinter(r)
 	}
-	return printer(result)
+	return Printer(r)
 }
-
-func basicInfoPrinter(result MarketsInfoBasic, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
-	}
-	return printer(result)
+func PrettyPrinter(i interface{}) string {
+	js, _ := json.MarshalIndent(i, "", "\t")
+	return string(js)
 }
-func detailInfoPrinter(result MarketsInfoDetail, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
-	}
-	return printer(result)
-}
-func liveRatesPrinter(result LiveRates, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
-	}
-	return printer(result)
+func Printer(i interface{}) string {
+	js, _ := json.Marshal(i)
+	return string(js)
 }
