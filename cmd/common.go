@@ -18,12 +18,16 @@ package cmd
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/spf13/viper"
+	"os"
 	"regexp"
 )
 
 const SwyftxAPI = "api.swyftx.com.au"
 
+// todo(dm): use requests validator instead of this.
 func errCheck401(s string) bool {
 	match, _ := regexp.MatchString("status: 401", s)
 	if match {
@@ -37,12 +41,13 @@ func errCheck401(s string) bool {
 
 func GenericPrinter(r interface{}, p bool) string {
 	if p {
-		PrettyPrinter(r)
+		return PrettyPrinter(r)
+
 	}
 	return Printer(r)
 }
 func PrettyPrinter(i interface{}) string {
-	js, _ := json.MarshalIndent(i, "", "\t")
+	js, _ := json.MarshalIndent(i, "", "  ")
 	return string(js)
 }
 func Printer(i interface{}) string {
