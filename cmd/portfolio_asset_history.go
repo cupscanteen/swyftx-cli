@@ -103,7 +103,6 @@ func requestSingleAsset(token string, c *http.Client) (AssetHistoryAllDTO, error
 	pageSize, _ := strconv.Atoi(portfolioLimit)
 	metadata := CalculateMetadata(result.RecordCount, page, pageSize)
 	result.Metadata = metadata
-	// remove RecordCount as we now expost Metadata
 	result.RecordCount = 0
 	log.Printf("%#v", result.Metadata)
 	return result, nil
