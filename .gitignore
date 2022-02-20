@@ -501,3 +501,4 @@ yarn-error.log
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,visualstudiocode,node,react,vuejs,python,rust,jetbrains,go
 n
 dist/
+.idea
