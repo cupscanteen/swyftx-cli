@@ -54,3 +54,20 @@ func Printer(i interface{}) string {
 	js, _ := json.Marshal(i)
 	return string(js)
 }
+
+// AccessTokenGetter will attempt to fetch the Access Token from the
+// configuration file. If we are testing it will get the valid mock access
+// token.
+func AccessTokenGetter() (string, error) {
+	if os.Getenv("TESTING_ENABLED") != "" {
+		return os.Getenv("FAKE_TOKEN"), nil
+	}
+	token := viper.GetString("token")
+	if token == "" {
+		err := errors.New("access token missing from configuration file")
+		if err != nil {
+			return "", err
+		}
+	}
+	return token, nil
+}

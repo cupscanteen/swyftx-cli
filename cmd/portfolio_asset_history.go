@@ -60,7 +60,8 @@ func init() {
 }
 
 func portfolioAssetHistorySingle(cmd *cobra.Command, args []string) error {
-	token := viper.GetString("token")
+	token, err := AccessTokenGetter()
+	cobra.CheckErr(err)
 
 	result, err := requestSingleAsset(token)
 	cobra.CheckErr(err)

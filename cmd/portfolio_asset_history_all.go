@@ -51,7 +51,8 @@ func init() {
 }
 
 func portfolioAssetsHistoryAll(cmd *cobra.Command, args []string) error {
-	token := viper.GetString("token")
+	token, err := AccessTokenGetter()
+	cobra.CheckErr(err)
 
 	result, err := requestAllAssets(token)
 	cobra.CheckErr(err)
