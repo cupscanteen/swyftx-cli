@@ -44,5 +44,5 @@ func RecordNewTestdata(testdata string) {
 
 // FatalfFormatter is a helper that prints test comparison asserts nicely
 func FatalfFormatter(t *testing.T, got, want interface{}) {
-	t.Fatalf("\nwant %q\ngot  %#v", want, got)
+	t.Fatalf("\nwant %#v\ngot  %#v", want, got)
 }

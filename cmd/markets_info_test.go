@@ -8,16 +8,16 @@ import (
 
 const marketInfoTestdata = "testdata/marketinfo"
 
-func Test_RequestBasicInfo(t *testing.T) {
-	t.Cleanup(resetClient)
-	client.Transport = requests.Replay(marketInfoTestdata)
-	RecordNewTestdata(marketInfoTestdata)
-	result, err := requestBasicInfo(&client)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log(result)
-}
+//func Test_RequestBasicInfo(t *testing.T) {
+//	t.Cleanup(resetClient)
+//	client.Transport = requests.Replay(marketInfoTestdata)
+//	RecordNewTestdata(marketInfoTestdata)
+//	result, err := requestBasicInfo(&client)
+//	if err != nil {
+//		t.Fatal(err)
+//	}
+//	t.Log(result)
+//}
 
 func Test_MarketInfoBasicCmd(t *testing.T) {
 	t.Cleanup(resetClient)

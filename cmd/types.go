@@ -1,6 +1,9 @@
 package cmd
 
+import "math"
+
 type MarketsInfoBasicDTO []MarketsInfoBasic
+type AssetHistoryAllDTO AssetHistoryAll
 
 type AssetHistoryAll struct {
 	Items []struct {
@@ -19,7 +22,8 @@ type AssetHistoryAll struct {
 		SecondaryAmount  string `json:"secondaryAmount"`
 		PrimaryAmount    string `json:"primaryAmount"`
 	} `json:"items"`
-	RecordCount int `json:"recordCount"`
+	RecordCount int      `json:"recordCount,omitempty"`
+	Metadata    Metadata `json:"metadata"`
 }
 
 type MarketsInfoBasic struct {

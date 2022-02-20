@@ -20,8 +20,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/carlmjohnson/requests"
-	"github.com/spf13/viper"
+	"log"
+	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/spf13/cobra"
 )
@@ -63,20 +65,20 @@ func portfolioAssetHistorySingle(cmd *cobra.Command, args []string) error {
 	token, err := AccessTokenGetter()
 	cobra.CheckErr(err)
 
-	result, err := requestSingleAsset(token)
+	result, err := requestSingleAsset(token, &client)
 	cobra.CheckErr(err)
 
-	// Print to stdout
 	stdout := GenericPrinter(result, portfolioPretty)
 	fmt.Println(stdout)
 
 	return nil
 }
 
-func requestSingleAsset(token string) (AssetHistoryAll, error) {
-	var result AssetHistoryAll
+func requestSingleAsset(token string, c *http.Client) (AssetHistoryAllDTO, error) {
+	var result AssetHistoryAllDTO
 	err := requests.
 		URL(fmt.Sprintf("/portfolio/assethistory/%s/", portfolioAssetId)).
+		Client(c).
 		Param("limit", portfolioLimit).
 		Param("page", portfolioPage).
 		Param("type", portfolioOrderType).
@@ -92,11 +94,17 @@ func requestSingleAsset(token string) (AssetHistoryAll, error) {
 		CheckStatus(200).
 		Fetch(context.Background())
 	if err != nil {
-		errCheck401(err.Error())
 		if !errCheck401(err.Error()) {
 			fmt.Println(err.Error())
 		}
 		os.Exit(-1)
 	}
+	page, _ := strconv.Atoi(portfolioPage)
+	pageSize, _ := strconv.Atoi(portfolioLimit)
+	metadata := CalculateMetadata(result.RecordCount, page, pageSize)
+	result.Metadata = metadata
+	// remove RecordCount as we now expost Metadata
+	result.RecordCount = 0
+	log.Printf("%#v", result.Metadata)
 	return result, nil
 }
