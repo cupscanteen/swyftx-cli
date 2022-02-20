@@ -6,13 +6,13 @@ import (
 	"testing"
 )
 
-const portfolioAssetHistoryTestdata = "testdata/portfolio"
+const portfolioAssetHistoryAllTestdata = "testdata/portfolio/all"
 
-func Test_PortfolioAssetHistoryCmd_Default(t *testing.T) {
+func Test_PortfolioAssetHistoryAllCmd_Default(t *testing.T) {
 	resetClient()
 	resetPortfolioArgs()
-	client.Transport = requests.Replay(portfolioAssetHistoryTestdata)
-	RecordNewTestdata(portfolioAssetHistoryTestdata)
+	client.Transport = requests.Replay(portfolioAssetHistoryAllTestdata)
+	RecordNewTestdata(portfolioAssetHistoryAllTestdata)
 	stdOut := CaptureStdout(func() {
 		rootCmd.SetArgs([]string{
 			"portfolio",
@@ -36,7 +36,8 @@ func Test_PortfolioAssetHistoryCmd_Default(t *testing.T) {
 		}
 	}
 }
-func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
+func Test_PortfolioAssetHistoryAllCmd_Args(t *testing.T) {
+
 	cases := []struct {
 		name     string
 		args     []string
@@ -48,13 +49,14 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 				"portfolio",
 				"asset",
 				"history",
+				"all",
 			},
 			expected: Metadata{
 				CurrentPage:  1,
 				PageSize:     20,
 				FirstPage:    1,
-				LastPage:     1,
-				TotalRecords: 10,
+				LastPage:     215,
+				TotalRecords: 4291,
 			},
 		},
 		{
@@ -63,6 +65,7 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 				"portfolio",
 				"asset",
 				"history",
+				"all",
 				"--limit",
 				"5",
 			},
@@ -70,8 +73,8 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 				CurrentPage:  1,
 				PageSize:     5,
 				FirstPage:    1,
-				LastPage:     2,
-				TotalRecords: 10,
+				LastPage:     859,
+				TotalRecords: 4291,
 			},
 		},
 		{
@@ -80,6 +83,7 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 				"portfolio",
 				"asset",
 				"history",
+				"all",
 				"--order-type",
 				"BUY",
 			},
@@ -87,29 +91,30 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 				CurrentPage:  1,
 				PageSize:     20,
 				FirstPage:    1,
-				LastPage:     1,
-				TotalRecords: 4,
+				LastPage:     144,
+				TotalRecords: 2876,
 			},
 		},
 		{
-			name: "read second page of SELL results for ETH",
+			name: "read second page of SELL results which have COMPLETED",
 			args: []string{
 				"portfolio",
 				"asset",
 				"history",
+				"all",
 				"--page",
 				"2",
 				"--limit",
 				"2",
-				"--asset",
-				"5",
+				"--order-status",
+				"COMPLETED",
 			},
 			expected: Metadata{
 				CurrentPage:  2,
 				PageSize:     2,
 				FirstPage:    1,
-				LastPage:     4,
-				TotalRecords: 8,
+				LastPage:     515,
+				TotalRecords: 1030,
 			},
 		},
 	}
@@ -117,8 +122,8 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 		resetClient()
 		resetPortfolioArgs()
 		t.Run(tc.name, func(t *testing.T) {
-			client.Transport = requests.Replay(portfolioAssetHistoryTestdata)
-			RecordNewTestdata(portfolioAssetHistoryTestdata)
+			client.Transport = requests.Replay(portfolioAssetHistoryAllTestdata)
+			RecordNewTestdata(portfolioAssetHistoryAllTestdata)
 			stdOut := CaptureStdout(func() {
 				rootCmd.SetArgs(tc.args)
 				rootCmd.Execute()
@@ -133,18 +138,4 @@ func Test_PortfolioAssetHistoryCmd_Args(t *testing.T) {
 			}
 		})
 	}
-}
-
-func resetPortfolioArgs() {
-	portfolioAssetId = "3"
-	portfolioLimit = "20"
-	portfolioPage = "1"
-	portfolioSortKey = "date"
-	portfolioSortDirection = "ASC"
-	portfolioOrderType = ""
-	portfolioOrderStatus = ""
-	portfolioStartDate = ""
-	portfolioEndDate = ""
-	portfolioPretty = false
-	portfolioOutput = "csv"
 }
