@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -35,10 +36,15 @@ If no asset is provided, all assets are returned.`,
 
 func init() {
 	marketsCmd.AddCommand(detailCmd)
+	// Asset to query
+	detailCmd.Flags().StringVarP(&infoAssetId, "asset", "a", "", "Asset by ID which should be queried. Must be in 'id' format, not name.")
+	// Helpers
+	detailCmd.Flags().BoolVarP(&infoPretty, "pretty", "", false, "Pretty print the response")
+	detailCmd.Flags().StringVarP(&infoOutput, "output", "o", "csv", "Write the output to a file. Options: csv **coming soon**")
+
 }
 func marketInfoDetail(cmd *cobra.Command, args []string) error {
-
-	result, err := requestInfoDetail()
+	result, err := requestInfoDetail(&client)
 	cobra.CheckErr(err)
 
 	stdout := GenericPrinter(result, infoPretty)
@@ -46,14 +52,15 @@ func marketInfoDetail(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-func requestInfoDetail() (MarketsInfoDetail, error) {
-	var result MarketsInfoDetail
+func requestInfoDetail(c *http.Client) (MarketsInfoDetailDTO, error) {
+	var result MarketsInfoDetailDTO
 	url := fmt.Sprintf("/markets/info/detail/%s/", infoAssetId)
 	if infoAssetId == "" {
 		url = "/markets/info/detail/"
 	}
 	err := requests.
 		URL(url).
+		Client(c).
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		ToJSON(&result).

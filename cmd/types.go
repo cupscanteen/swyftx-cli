@@ -3,6 +3,7 @@ package cmd
 import "math"
 
 type MarketsInfoBasicDTO []MarketsInfoBasic
+type MarketsInfoDetailDTO []MarketsInfoDetail
 type AssetHistoryAllDTO AssetHistoryAll
 
 type AssetHistoryAll struct {
@@ -39,7 +40,7 @@ type MarketsInfoBasic struct {
 	MarketCap float64 `json:"marketCap"`
 }
 
-type MarketsInfoDetail []struct {
+type MarketsInfoDetail struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`
 	Name        string `json:"name"`
