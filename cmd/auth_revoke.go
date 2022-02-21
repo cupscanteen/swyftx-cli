@@ -53,7 +53,7 @@ var revokeCmd = &cobra.Command{
 
 To revoke the API key, the key used to do the revoking must have 'app.api.revoke' permissions. You must pass the 'keyRef' with the
 revocation command. The 'keyRef' can be gathered by getting the list of keys from the account first. 
-To do that in ` + appName + ` run '` + appName + ` authenticate keys' and note the 'keyRef' that matches the key label you wish to revoke.
+To do that in ` + appName + ` run '` + appName + ` authenticate revoke --get-keys' and note the 'keyRef' that matches the key label you wish to revoke.
 
 The ` + appName + ` must have already authenticated successfully with Swyftx by using the 'authenticate' subcommand.`,
 	RunE: revokeIt,
@@ -83,6 +83,10 @@ func revokeIt(cmd *cobra.Command, args []string) error {
 	if revokeAccessToken {
 		err := logoutAccessToken(&client, token)
 		cobra.CheckErr(err)
+	}
+	err = cmd.Help()
+	if err != nil {
+		return err
 	}
 	return nil
 }
