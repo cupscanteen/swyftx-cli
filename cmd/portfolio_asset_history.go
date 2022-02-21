@@ -20,7 +20,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/carlmjohnson/requests"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -104,6 +103,5 @@ func requestSingleAsset(token string, c *http.Client) (AssetHistoryAllDTO, error
 	metadata := CalculateMetadata(result.RecordCount, page, pageSize)
 	result.Metadata = metadata
 	result.RecordCount = 0
-	log.Printf("%#v", result.Metadata)
 	return result, nil
 }
