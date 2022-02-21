@@ -56,7 +56,6 @@ Additional help topics:
   swyftx-cli orders       Display commands that retrieve Orders information
 
 Use "swyftx-cli [command] --help" for more information about a command.
-
 ```
 
 ### Authentication
@@ -87,10 +86,47 @@ apikey: 9jVg117muQOb3rdM...truncated
 token: eyJhbGciOiJSUzI1Ni..truncated
 ```
 
-[swyftx-api-docs]: https://help.swyftx.com.au/en/articles/3825168-how-to-create-an-api-key
+## Running Tests
+
+This application uses the [requests] package to make HTTP calls. A benefit of this is its 
+ability to record and replay HTTP sessions. Swyftx-cli uses this extensively to test against.
+
+However, there are some setup costs before running tests. The application needs three environment 
+variables, two for running existing tests and another for generating new tests.
+
+**Existing tests**
+
+Set an environment variable called `FAKE_TOKEN` with the bearer token found in any of the 
+`portfolio` testdata files found at:
+
+`swyftx-cli/cmd/testdata/portfolio/*.req.txt`. Copy the `<TOKEN>` from `Authorization: Bearer 
+<TOKEN>` line in any of those files. Then set a variable named `TESTING_ENABLED` to `1`. 
+
+Run the tests and they should pass. The application must have those environment variables unset 
+to function correctly otherwise you may experience subtle issues when attempting to run the 
+application when you've finished testing.
+
+**New tests**
+
+To create new HTTP session records, set `SWYFTX_TESTDATA_RECORD=1` and `FAKE_TOKEN=`. You will 
+need to have a valid API key and Access Token authenticated via `swyftx-cli authenticate 
+--apikey <key>` so that the token is set correctly in the config file.
+
+Once set, running tests will create new HTTP session records inside the `testdata` folder. Run 
+the tests as many times a necessary to write your tests but note that data continually changes 
+and can break your test output at anytime. I usually run it once to save the output then stop 
+recording and write tests from the new data. 
+
+**Unauthenticated endpoints**
+
+If you are writing tests for endpoints which **do not** require authentication then you do not need 
+to set `FAKE_TOKEN` as it is not sent with the request.
+
 
 ## Swyftx Documentation
 
 [Documentation](https://docs.swyftx.com.au) for swyftx API endpoints match as closely as possible to
 the `swyftx-cli` subcommands.
 
+[swyftx-api-docs]: https://help.swyftx.com.au/en/articles/3825168-how-to-create-an-api-key
+[requests]: https://github.com/carlmjohnson/requests
