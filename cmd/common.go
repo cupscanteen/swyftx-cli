@@ -19,24 +19,28 @@ package cmd
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
+	"github.com/carlmjohnson/requests"
 	"github.com/spf13/viper"
+	"log"
+	"net/http"
 	"os"
-	"regexp"
 )
 
 const SwyftxAPI = "api.swyftx.com.au"
 
-// todo(dm): use requests validator instead of this.
-func errCheck401(s string) bool {
-	match, _ := regexp.MatchString("status: 401", s)
-	if match {
-		fmt.Println("401 Unauthorized error. You may need to refresh the Access Token")
-		fmt.Println("To refresh run: 'swyftx-cli authenticate refresh'")
-		fmt.Println("If you have not set the 'apikey' by running 'swyftx-cli authenticate --apikey <apikey>' you will need to do this before continuing.")
-		return true
+var errorBody string
+
+func StatusChecker(res *http.Response) error {
+	err := requests.CheckStatus(200)(res)
+	if requests.HasStatusErr(err, 400) {
+		if copyErr := requests.ToString(&errorBody)(res); copyErr != nil {
+			return copyErr
+		}
 	}
-	return false
+	if requests.HasStatusErr(err, 401) {
+		return errors.New(`401 Unauthorized error. You may need to refresh the Access Token or authenticate using ` + appName)
+	}
+	return err
 }
 
 func GenericPrinter(r interface{}, p bool) string {
@@ -60,6 +64,7 @@ func Printer(i interface{}) string {
 // token.
 func AccessTokenGetter() (string, error) {
 	if os.Getenv("TESTING_ENABLED") != "" {
+		log.Println("[!] using test TOKEN [!]")
 		return os.Getenv("FAKE_TOKEN"), nil
 	}
 	token := viper.GetString("token")
