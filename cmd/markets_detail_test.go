@@ -12,11 +12,10 @@ func Test_RequestBasicInfo(t *testing.T) {
 	resetClient()
 	client.Transport = requests.Replay(marketInfoTestdata)
 	RecordNewTestdata(marketInfoTestdata)
-	result, err := requestInfoDetail(&client)
+	_, err := requestInfoDetail(&client)
 	if err != nil {
 		t.Fatal(err)
 	}
-	t.Log(result)
 }
 
 func Test_MarketsDetailCmdArgs(t *testing.T) {
