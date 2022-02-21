@@ -20,7 +20,6 @@ import (
 	"fmt"
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
-	"os"
 )
 
 var liveRatesAssetId string
@@ -67,11 +66,10 @@ func requestLiveRates() (LiveRates, error) {
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		ToJSON(&result).
-		CheckStatus(200).
+		AddValidator(StatusChecker).
 		Fetch(context.Background())
 	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(-1)
+		return LiveRates{}, err
 	}
 	return result, nil
 }

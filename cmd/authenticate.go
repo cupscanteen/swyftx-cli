@@ -33,8 +33,9 @@ func init() {
 
 // authenticateCmd represents the authenticate command
 var authenticateCmd = &cobra.Command{
-	Use:   "authenticate",
-	Short: "Registers a Swyftx API Key for use throughout the application.",
+	Use:     "authenticate",
+	Aliases: []string{"auth"},
+	Short:   "Registers a Swyftx API Key for use throughout the application.",
 	Long: `
 This command allows you to register a Swyftx API key for use in this CLI. You can get an API key from the Swyftx Dashboard.
 
@@ -59,6 +60,6 @@ func writeApiKeyToConfig(apiKey string) error {
 	if err != nil {
 		return err
 	}
-	refreshToken()
+	refreshToken(&client)
 	return nil
 }

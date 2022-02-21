@@ -117,6 +117,9 @@ the tests as many times a necessary to write your tests but note that data conti
 and can break your test output at anytime. I usually run it once to save the output then stop 
 recording and write tests from the new data. 
 
+You can now "logout" (revoke) the current access token with `swyftx-cli authenticate revoke 
+--token`. 
+
 **Unauthenticated endpoints**
 
 If you are writing tests for endpoints which **do not** require authentication then you do not need 
