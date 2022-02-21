@@ -24,6 +24,7 @@ import (
 )
 
 var (
+	appName = "swyftx-cli"
 	// Global flags
 	cfgFile string
 	debug   bool

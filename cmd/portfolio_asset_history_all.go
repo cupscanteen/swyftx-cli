@@ -22,7 +22,6 @@ import (
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
 	"net/http"
-	"os"
 	"strconv"
 )
 
@@ -81,13 +80,10 @@ func requestAllAssets(token string, c *http.Client) (AssetHistoryAllDTO, error) 
 		ContentType("application/json").
 		Header("Authorization", fmt.Sprintf("Bearer %s", token)).
 		ToJSON(&result).
-		CheckStatus(200).
+		AddValidator(StatusChecker).
 		Fetch(context.Background())
 	if err != nil {
-		if !errCheck401(err.Error()) {
-			fmt.Println(err.Error())
-		}
-		os.Exit(-1)
+		return AssetHistoryAllDTO{}, nil
 	}
 	page, _ := strconv.Atoi(portfolioPage)
 	pageSize, _ := strconv.Atoi(portfolioLimit)
