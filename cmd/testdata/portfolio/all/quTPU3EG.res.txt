@@ -1,0 +1,31 @@
+HTTP/2.0 200 OK
+Access-Control-Expose-Headers: content-disposition, content-type, ratelimit-limit, ratelimit-remaining, ratelimit-reset, retry-after, Swyftx-RequestId, X-Paging-PageNo, X-Paging-PageSize, X-Paging-PageCount, X-Paging-TotalRecordCount
+Cf-Cache-Status: DYNAMIC
+Cf-Ray: 6e05d6f2ffeb5a9c-MEL
+Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+Content-Type: application/json; charset=utf-8
+Date: Sun, 20 Feb 2022 06:57:14 GMT
+Etag: W/"73c-V8V8sdCBCDUDrIcyYjRzvWi/9kQ"
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Ratelimit-Limit: 5
+Ratelimit-Remaining: 5
+Ratelimit-Reset: 5
+Referrer-Policy: strict-origin-when-cross-origin
+Server: cloudflare
+Set-Cookie: AWSALBTG=uujEp/aCGHlOvxnPxnxnCrE1CnIUqfwJge0u3tEXJll6YB3QHNW3qpjVe1k2Mqw3QCmBO1hzOxRRW+W/fDk6n6NXzdDpWwNxdb8nq2pSMghGZzbFV0cuVVQNj0P4Xfizc0qXnyPxHA6yn2XC7Avk80rsWQsMAdbi40dIbGykHoPZkxCKpRI=; Expires=Sun, 27 Feb 2022 06:57:14 GMT; Path=/
+Set-Cookie: AWSALBTGCORS=uujEp/aCGHlOvxnPxnxnCrE1CnIUqfwJge0u3tEXJll6YB3QHNW3qpjVe1k2Mqw3QCmBO1hzOxRRW+W/fDk6n6NXzdDpWwNxdb8nq2pSMghGZzbFV0cuVVQNj0P4Xfizc0qXnyPxHA6yn2XC7Avk80rsWQsMAdbi40dIbGykHoPZkxCKpRI=; Expires=Sun, 27 Feb 2022 06:57:14 GMT; Path=/; SameSite=None; Secure
+Set-Cookie: AWSALB=z7KG75rfkH/Tnub87FOKEe/pZK/9Gcp/8a0FT8bTRuXafuBMfsHywL4yGWV3ttza4MMr4j/db5mtSzr3HHL0yYClT6uZnHH8wOuERaijpuva4engshuhKjro7exB; Expires=Sun, 27 Feb 2022 06:57:14 GMT; Path=/
+Set-Cookie: AWSALBCORS=z7KG75rfkH/Tnub87FOKEe/pZK/9Gcp/8a0FT8bTRuXafuBMfsHywL4yGWV3ttza4MMr4j/db5mtSzr3HHL0yYClT6uZnHH8wOuERaijpuva4engshuhKjro7exB; Expires=Sun, 27 Feb 2022 06:57:14 GMT; Path=/; SameSite=None; Secure
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Swyftx-Requestid: c96223c0-d6e1-4a4a-9ee3-eeb134205c01
+Vary: Origin
+X-Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Content-Type-Options: nosniff
+X-Dns-Prefetch-Control: off
+X-Download-Options: noopen
+X-Frame-Options: SAMEORIGIN
+X-Response-Time: 61ms
+X-Webkit-Csp: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Xss-Protection: 1; mode=block
+
+{"items":[{"date":1644486905729,"secondaryAsset":1,"primaryAsset":null,"secondaryAmount":"100","amount":"100","userCountryValue":"100","uuid":"dep_KKHc5qbxBbzYCqcKrdUAdU","type":"DEPOSIT","status":"COMPLETED","statusRaw":2,"orderType":null,"label":"Default AUD Direct Deposit","feeAmount":null,"feeUserCountryValue":null},{"date":1644566950123,"secondaryAsset":5,"primaryAsset":1,"secondaryAmount":"0.000457439078087036","primaryAmount":"-2.012611838055078798","amount":null,"userCountryValue":"2.012611838055078798","uuid":"ord_tekq1T8W9bLJ5y1Y18MAA","type":"BUY","status":"COMPLETED","statusRaw":4,"orderType":1,"label":null,"feeAmount":"0.012003649133529297","feeUserCountryValue":"0.012003649133529297"},{"date":1644566950753,"secondaryAsset":15,"primaryAsset":1,"secondaryAmount":"0.1952035128627189","primaryAmount":"-2.012075359297439711","amount":null,"userCountryValue":"2.012075359297439711","uuid":"ord_3oAXNF92aLnigxWf2aUaKK","type":"BUY","status":"COMPLETED","statusRaw":4,"orderType":1,"label":null,"feeAmount":"0.012000449459030455","feeUserCountryValue":"0.012000449459030455"},{"date":1644566951240,"secondaryAsset":15,"primaryAsset":1,"secondaryAmount":"-0.1952035128627189","primaryAmount":"2.6000000000000002663886486164222197538602","amount":"0","userCountryValue":null,"uuid":"ord_E9PGBj4LVg35tF2x6tQ1XZ","type":"SELL","status":"PENDING","statusRaw":1,"orderType":4,"label":null,"feeAmount":null,"feeUserCountryValue":null},{"date":1644566951359,"secondaryAsset":28,"primaryAsset":1,"secondaryAmount":"2.3317201621367776","primaryAmount":"-2.018437778774932261","amount":null,"userCountryValue":"2.018437778774932261","uuid":"ord_SMZFPVyW5fShxysdcwzd1L","type":"BUY","status":"COMPLETED","statusRaw":4,"orderType":1,"label":null,"feeAmount":"0.012038396294880311","feeUserCountryValue":"0.012038396294880311"}],"recordCount":4291}

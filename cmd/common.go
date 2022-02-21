@@ -18,22 +18,16 @@ package cmd
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/spf13/viper"
+	"os"
 	"regexp"
 )
 
 const SwyftxAPI = "api.swyftx.com.au"
 
-func prettyPrint(i interface{}) string {
-	js, _ := json.MarshalIndent(i, "", "\t")
-	return string(js)
-}
-
-func printer(i interface{}) string {
-	js, _ := json.Marshal(i)
-	return string(js)
-}
-
+// todo(dm): use requests validator instead of this.
 func errCheck401(s string) bool {
 	match, _ := regexp.MatchString("status: 401", s)
 	if match {
@@ -45,28 +39,35 @@ func errCheck401(s string) bool {
 	return false
 }
 
-func assetPrinter(result AssetHistoryAll, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
+func GenericPrinter(r interface{}, p bool) string {
+	if p {
+		return PrettyPrinter(r)
+
 	}
-	return printer(result)
+	return Printer(r)
+}
+func PrettyPrinter(i interface{}) string {
+	js, _ := json.MarshalIndent(i, "", "  ")
+	return string(js)
+}
+func Printer(i interface{}) string {
+	js, _ := json.Marshal(i)
+	return string(js)
 }
 
-func basicInfoPrinter(result MarketsInfoBasic, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
+// AccessTokenGetter will attempt to fetch the Access Token from the
+// configuration file. If we are testing it will get the valid mock access
+// token.
+func AccessTokenGetter() (string, error) {
+	if os.Getenv("TESTING_ENABLED") != "" {
+		return os.Getenv("FAKE_TOKEN"), nil
 	}
-	return printer(result)
-}
-func detailInfoPrinter(result MarketsInfoDetail, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
+	token := viper.GetString("token")
+	if token == "" {
+		err := errors.New("access token missing from configuration file")
+		if err != nil {
+			return "", err
+		}
 	}
-	return printer(result)
-}
-func liveRatesPrinter(result LiveRates, prettify bool) string {
-	if prettify {
-		return prettyPrint(result)
-	}
-	return printer(result)
+	return token, nil
 }

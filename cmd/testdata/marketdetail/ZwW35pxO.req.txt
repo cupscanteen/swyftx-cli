@@ -1,0 +1,4 @@
+GET /markets/info/detail/ HTTP/1.1
+Host: api.swyftx.com.au
+Content-Type: application/json
+

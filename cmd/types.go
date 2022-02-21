@@ -1,5 +1,11 @@
 package cmd
 
+import "math"
+
+type MarketsInfoBasicDTO []MarketsInfoBasic
+type MarketsInfoDetailDTO []MarketsInfoDetail
+type AssetHistoryAllDTO AssetHistoryAll
+
 type AssetHistoryAll struct {
 	Items []struct {
 		Date             int64  `json:"date"`
@@ -17,10 +23,11 @@ type AssetHistoryAll struct {
 		SecondaryAmount  string `json:"secondaryAmount"`
 		PrimaryAmount    string `json:"primaryAmount"`
 	} `json:"items"`
-	RecordCount int `json:"recordCount"`
+	RecordCount int      `json:"recordCount,omitempty"`
+	Metadata    Metadata `json:"metadata"`
 }
 
-type MarketsInfoBasic []struct {
+type MarketsInfoBasic struct {
 	Name      string  `json:"name"`
 	AltName   string  `json:"altName"`
 	Code      string  `json:"code"`
@@ -33,7 +40,7 @@ type MarketsInfoBasic []struct {
 	MarketCap float64 `json:"marketCap"`
 }
 
-type MarketsInfoDetail []struct {
+type MarketsInfoDetail struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`
 	Name        string `json:"name"`
@@ -63,3 +70,24 @@ type MarketsInfoDetail []struct {
 }
 
 type LiveRates map[string]interface{}
+
+type Metadata struct {
+	CurrentPage  int `json:"current_page,omitempty"`
+	PageSize     int `json:"page_size,omitempty"`
+	FirstPage    int `json:"first_page,omitempty"`
+	LastPage     int `json:"last_page,omitempty"`
+	TotalRecords int `json:"total_records,omitempty"`
+}
+
+func CalculateMetadata(totalRecords, page, pageSize int) Metadata {
+	if totalRecords == 0 {
+		return Metadata{}
+	}
+	return Metadata{
+		CurrentPage:  page,
+		PageSize:     pageSize,
+		FirstPage:    1,
+		LastPage:     int(math.Ceil(float64(totalRecords) / float64(pageSize))),
+		TotalRecords: totalRecords,
+	}
+}

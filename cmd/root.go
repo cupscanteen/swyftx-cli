@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"net/http"
 	"os"
 )
 
@@ -26,6 +27,8 @@ var (
 	// Global flags
 	cfgFile string
 	debug   bool
+	// Global http.Client needed for overriding during testing
+	client http.Client
 )
 
 // rootCmd represents the base command when called without any subcommands

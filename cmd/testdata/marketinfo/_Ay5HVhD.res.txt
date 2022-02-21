@@ -1,0 +1,31 @@
+HTTP/2.0 200 OK
+Access-Control-Expose-Headers: content-disposition, content-type, ratelimit-limit, ratelimit-remaining, ratelimit-reset, retry-after, Swyftx-RequestId, X-Paging-PageNo, X-Paging-PageSize, X-Paging-PageCount, X-Paging-TotalRecordCount
+Cf-Cache-Status: DYNAMIC
+Cf-Ray: 6e050923be675a7f-MEL
+Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+Content-Type: application/json; charset=utf-8
+Date: Sun, 20 Feb 2022 04:36:44 GMT
+Etag: W/"b5-Q9f7VA/opbCHWHqxaMcfhm6GS0g"
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Ratelimit-Limit: 5
+Ratelimit-Remaining: 5
+Ratelimit-Reset: 5
+Referrer-Policy: strict-origin-when-cross-origin
+Server: cloudflare
+Set-Cookie: AWSALBTG=CuFD3PlqWrxfVUGyOohfvDQ0ipZbgrXUgiyaqaMSlfyTdyJ9XQ4N4+UbxlFbRmBbVQIobpwTAO9mag0Z9hbPNd7BXymAmzVnMpRtryIku1G7sCD2xKATDhU7hXsr/PpnyfYi3mfwV8hLx+rIeKNw1juRzBghS16L+PoNcwa0Xul1LY1divI=; Expires=Sun, 27 Feb 2022 04:36:44 GMT; Path=/
+Set-Cookie: AWSALBTGCORS=CuFD3PlqWrxfVUGyOohfvDQ0ipZbgrXUgiyaqaMSlfyTdyJ9XQ4N4+UbxlFbRmBbVQIobpwTAO9mag0Z9hbPNd7BXymAmzVnMpRtryIku1G7sCD2xKATDhU7hXsr/PpnyfYi3mfwV8hLx+rIeKNw1juRzBghS16L+PoNcwa0Xul1LY1divI=; Expires=Sun, 27 Feb 2022 04:36:44 GMT; Path=/; SameSite=None; Secure
+Set-Cookie: AWSALB=0kjMHe24+AwEIREbYU1uatxW03UtIZL+1DLrWaWHjClKYJzTkVpwVGBbjqKRg88lHOzAdeIufZtpJHhBNR5IiTxK0ryMc2OUV1KqyLeWf72qN43NS1rJBoBG/+pQ; Expires=Sun, 27 Feb 2022 04:36:44 GMT; Path=/
+Set-Cookie: AWSALBCORS=0kjMHe24+AwEIREbYU1uatxW03UtIZL+1DLrWaWHjClKYJzTkVpwVGBbjqKRg88lHOzAdeIufZtpJHhBNR5IiTxK0ryMc2OUV1KqyLeWf72qN43NS1rJBoBG/+pQ; Expires=Sun, 27 Feb 2022 04:36:44 GMT; Path=/; SameSite=None; Secure
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Swyftx-Requestid: 4b50f245-1b5b-4cc5-b40c-8fc192795b38
+Vary: Origin
+X-Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Content-Type-Options: nosniff
+X-Dns-Prefetch-Control: off
+X-Download-Options: noopen
+X-Frame-Options: SAMEORIGIN
+X-Response-Time: 1ms
+X-Webkit-Csp: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Xss-Protection: 1; mode=block
+
+[{"name":"Ethereum","altName":"Ethereum","code":"ETH","id":5,"rank":2,"buy":"3754.37969042","sell":"3737.15431289","spread":"0.45","volume24H":10000686345,"marketCap":325271200727}]

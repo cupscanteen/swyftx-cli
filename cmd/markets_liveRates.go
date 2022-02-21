@@ -54,7 +54,7 @@ func marketLiveRates(cmd *cobra.Command, args []string) error {
 	result, err := requestLiveRates()
 	cobra.CheckErr(err)
 
-	stdout := liveRatesPrinter(result, infoPretty)
+	stdout := GenericPrinter(result, infoPretty)
 	fmt.Println(stdout)
 	return nil
 }

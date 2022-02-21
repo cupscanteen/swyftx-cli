@@ -1,0 +1,31 @@
+HTTP/2.0 200 OK
+Access-Control-Expose-Headers: content-disposition, content-type, ratelimit-limit, ratelimit-remaining, ratelimit-reset, retry-after, Swyftx-RequestId, X-Paging-PageNo, X-Paging-PageSize, X-Paging-PageCount, X-Paging-TotalRecordCount
+Cf-Cache-Status: DYNAMIC
+Cf-Ray: 6e068a443adc5aa8-MEL
+Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+Content-Type: application/json; charset=utf-8
+Date: Sun, 20 Feb 2022 08:59:39 GMT
+Etag: W/"a9e-9UymJaoIdAwrz5VyTp0/ylXZ96g"
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Ratelimit-Limit: 5
+Ratelimit-Remaining: 5
+Ratelimit-Reset: 5
+Referrer-Policy: strict-origin-when-cross-origin
+Server: cloudflare
+Set-Cookie: AWSALBTG=4zfuuTMyLEilfXvUIsGvINVPvCHeYn2SQw2KGICvk9rhOX3D2aVtQB/ucXtyxZDYVMQVYoIzXfu6cNhwhHl18DZIFiMsASeAZYdtLpW5FBfIMJjSTVg1/NYZs6R6ONdp07WVpbo+4fwIJovlRwtGWg2zLAyOU/XIi04iB83xVX/GDAc+n3c=; Expires=Sun, 27 Feb 2022 08:59:39 GMT; Path=/
+Set-Cookie: AWSALBTGCORS=4zfuuTMyLEilfXvUIsGvINVPvCHeYn2SQw2KGICvk9rhOX3D2aVtQB/ucXtyxZDYVMQVYoIzXfu6cNhwhHl18DZIFiMsASeAZYdtLpW5FBfIMJjSTVg1/NYZs6R6ONdp07WVpbo+4fwIJovlRwtGWg2zLAyOU/XIi04iB83xVX/GDAc+n3c=; Expires=Sun, 27 Feb 2022 08:59:39 GMT; Path=/; SameSite=None; Secure
+Set-Cookie: AWSALB=jHRGF0q/0dXJxR2cL4PFZRIarS0ITcLNo5VfWXcsm65DRPag2uiF0vpR79A3ANZD1uEtH6dBk5rGP2SSjFUxuLL7aFKHcpiSNA6QQgQVOPVOOiv/97yTZm4NLHjA; Expires=Sun, 27 Feb 2022 08:59:39 GMT; Path=/
+Set-Cookie: AWSALBCORS=jHRGF0q/0dXJxR2cL4PFZRIarS0ITcLNo5VfWXcsm65DRPag2uiF0vpR79A3ANZD1uEtH6dBk5rGP2SSjFUxuLL7aFKHcpiSNA6QQgQVOPVOOiv/97yTZm4NLHjA; Expires=Sun, 27 Feb 2022 08:59:39 GMT; Path=/; SameSite=None; Secure
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Swyftx-Requestid: d914761c-36c6-4e25-9f9f-cbeab46ebdcf
+Vary: Origin
+X-Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Content-Type-Options: nosniff
+X-Dns-Prefetch-Control: off
+X-Download-Options: noopen
+X-Frame-Options: SAMEORIGIN
+X-Response-Time: 1ms
+X-Webkit-Csp: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Xss-Protection: 1; mode=block
+
+[{"id":5,"description":"Ethereum is a <a href=\"https://www.coingecko.com/en?category_id=29&view=market\">smart contract platform</a> that enables developers to build tokens and decentralized applications (dapps). ETH is the native currency for the Ethereum platform and also works as the transaction fees to miners on the Ethereum network.\r\n\r\nEthereum is the pioneer for blockchain based smart contracts. Smart contract is essentially a computer code that runs exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference. It can facilitate the exchange of money, content, property, shares, or anything of value. When running on the blockchain a smart contract becomes like a self-operating computer program that automatically executes when specific conditions are met.\r\n\r\nEthereum allows programmers to run complete-turing smart contracts that is capable of any customizations. Rather than giving a set of limited operations, Ethereum allows developers to have complete control over customization of their smart contract, giving developers the power to build unique and innovative applications.\r\n\r\nEthereum being the first blockchain based smart contract platform, they have gained much popularity, resulting in new competitors fighting for market share. The competitors includes: <a href=\"https://www.coingecko.com/en/coins/ethereum_classic\">Ethereum Classic</a> which is the oldchain of Ethereum, <a href=\"https://www.coingecko.com/en/coins/qtum\">Qtum</a>, <a href=\"https://www.coingecko.com/en/coins/eos\">EOS</a>, <a href=\"https://www.coingecko.com/en/coins/neo\">Neo</a>, <a href=\"https://www.coingecko.com/en/coins/icon\">Icon</a>, <a href=\"https://www.coingecko.com/en/coins/tron\">Tron</a> and <a href=\"https://www.coingecko.com/en/coins/cardano\">Cardano</a>.\r\n\r\nEthereum wallets are fairly simple to set up with multiple popular choices such as myetherwallet, <a href=\"https://www.coingecko.com/buzz/complete-beginners-guide-to-metamask?locale=en\">metamask</a>, and <a href=\"https://www.coingecko.com/buzz/trezor-model-t-wallet-review\">Trezor</a>. Read here for more guide on using ethereum wallet: <a href=\"https://www.coingecko.com/buzz/how-to-use-an-ethereum-wallet\">How to Use an Ethereum Wallet</a>","name":"Ethereum","category":"Smart Contract Platform","mineable":true,"spread":"0.46","rank":2,"rankSuffix":"nd","volume":{"24H":11559285651},"priceChange":{"week":-8.85215,"month":-11.79925},"urls":{"explorer":"https://etherscan.io/","reddit":"https://www.reddit.com/r/ethereum","twitter":"https://twitter.com/ethereum","website":"https://www.ethereum.org/"},"supply":{"circulating":119655447.6865,"total":null,"max":null}}]

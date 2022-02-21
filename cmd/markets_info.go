@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -42,25 +43,24 @@ func init() {
 	marketsInfoCmd.Flags().BoolVarP(&infoPretty, "pretty", "", false, "Pretty print the response")
 	marketsInfoCmd.Flags().StringVarP(&infoOutput, "output", "o", "csv", "Write the output to a file. Options: csv **coming soon**")
 }
-
 func marketInfoBasic(cmd *cobra.Command, args []string) error {
-
-	result, err := requestBasicInfo()
+	result, err := requestBasicInfo(&client)
 	cobra.CheckErr(err)
 
-	stdout := basicInfoPrinter(result, infoPretty)
+	stdout := GenericPrinter(result, infoPretty)
 	fmt.Println(stdout)
 	return nil
 }
 
-func requestBasicInfo() (MarketsInfoBasic, error) {
-	var result MarketsInfoBasic
+func requestBasicInfo(c *http.Client) (MarketsInfoBasicDTO, error) {
+	var result MarketsInfoBasicDTO
 	url := fmt.Sprintf("/markets/info/basic/%s/", infoAssetId)
 	if infoAssetId == "" {
 		url = "/markets/info/basic/"
 	}
 	err := requests.
 		URL(url).
+		Client(c).
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		ToJSON(&result).

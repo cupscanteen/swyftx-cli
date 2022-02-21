@@ -1,0 +1,31 @@
+HTTP/2.0 200 OK
+Access-Control-Expose-Headers: content-disposition, content-type, ratelimit-limit, ratelimit-remaining, ratelimit-reset, retry-after, Swyftx-RequestId, X-Paging-PageNo, X-Paging-PageSize, X-Paging-PageCount, X-Paging-TotalRecordCount
+Cf-Cache-Status: DYNAMIC
+Cf-Ray: 6e05d8de5b37df30-MEL
+Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+Content-Type: application/json; charset=utf-8
+Date: Sun, 20 Feb 2022 06:58:33 GMT
+Etag: W/"4f1-t7Vs/YIU2WHFMi8uo7+DbAx2ZRA"
+Expect-Ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Ratelimit-Limit: 5
+Ratelimit-Remaining: 5
+Ratelimit-Reset: 5
+Referrer-Policy: strict-origin-when-cross-origin
+Server: cloudflare
+Set-Cookie: AWSALBTG=MdTuoPunBI1gxJq3ZlQaqXvhn3dL1NXwhveYnulr/TL61rZQ5By+z7wtuRu7IsqCtEICRifhez6TdfBmpAoAoJ0uRtu2nlUvTbfejjr1Gra8sDJ90w5iUn+LrMgIMmeXAPJ6At9+DHejS2Tr0YBRR5HWLUN9u31CCfm4iPaH+HJT/Gsfeb8=; Expires=Sun, 27 Feb 2022 06:58:33 GMT; Path=/
+Set-Cookie: AWSALBTGCORS=MdTuoPunBI1gxJq3ZlQaqXvhn3dL1NXwhveYnulr/TL61rZQ5By+z7wtuRu7IsqCtEICRifhez6TdfBmpAoAoJ0uRtu2nlUvTbfejjr1Gra8sDJ90w5iUn+LrMgIMmeXAPJ6At9+DHejS2Tr0YBRR5HWLUN9u31CCfm4iPaH+HJT/Gsfeb8=; Expires=Sun, 27 Feb 2022 06:58:33 GMT; Path=/; SameSite=None; Secure
+Set-Cookie: AWSALB=qwyTAfqtD5xv+Mes/Csb/jFLbOhgLuZD3Z7cx82O2JNDeXjqfufa4h6icJpLIFaViuNuxLljx5jvGgqMC4kN4qNb/1RwEZ1fP0yL3vjKxiyD5cvbYwoi8tEjz3VC; Expires=Sun, 27 Feb 2022 06:58:33 GMT; Path=/
+Set-Cookie: AWSALBCORS=qwyTAfqtD5xv+Mes/Csb/jFLbOhgLuZD3Z7cx82O2JNDeXjqfufa4h6icJpLIFaViuNuxLljx5jvGgqMC4kN4qNb/1RwEZ1fP0yL3vjKxiyD5cvbYwoi8tEjz3VC; Expires=Sun, 27 Feb 2022 06:58:33 GMT; Path=/; SameSite=None; Secure
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Swyftx-Requestid: 83f7ab94-2fd4-4c6f-97e5-69a8b9b1519d
+Vary: Origin
+X-Content-Security-Policy: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Content-Type-Options: nosniff
+X-Dns-Prefetch-Control: off
+X-Download-Options: noopen
+X-Frame-Options: SAMEORIGIN
+X-Response-Time: 21ms
+X-Webkit-Csp: default-src 'none'; img-src 'self' https://*.swyftx.com.au https://swyftx.com.au; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+X-Xss-Protection: 1; mode=block
+
+{"items":[{"date":1644735319295,"secondaryAsset":3,"primaryAsset":1,"secondaryAmount":"0.00003358284113504","primaryAmount":"-0.00003358284113504","amount":"0","userCountryValue":null,"uuid":"ord_SM6oyqkecUC19Dn2CiZMR3","type":"BUY","status":"FAILED","statusRaw":2,"orderType":1,"label":null},{"date":1644735562443,"secondaryAsset":3,"primaryAsset":1,"secondaryAmount":"0.000033569984162083","primaryAmount":"-0.000033569984162083","amount":"0","userCountryValue":null,"uuid":"ord_WhLNAPBJWRj59sx2WZkDmp","type":"BUY","status":"FAILED","statusRaw":2,"orderType":1,"label":null},{"date":1644735889003,"secondaryAsset":3,"primaryAsset":1,"secondaryAmount":"0.000033579417984602","primaryAmount":"-2.012800406027243864","amount":"0.000033579417984602","userCountryValue":"2.012800406027243864","uuid":"ord_RH2byA6CzJUxarN5nnMpzc","type":"BUY","status":"COMPLETED","statusRaw":4,"orderType":1,"label":null},{"date":1644784091508,"secondaryAsset":3,"primaryAsset":1,"secondaryAmount":"0.000033624226022447","primaryAmount":"-2.012997042588675328","amount":"0.000033624226022447","userCountryValue":"2.012997042588675328","uuid":"ord_SL5QvF9bM1mTdA1pY617Cf","type":"BUY","status":"COMPLETED","statusRaw":4,"orderType":1,"label":null}],"recordCount":4,"runningTotal":null}

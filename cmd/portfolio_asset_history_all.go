@@ -21,8 +21,9 @@ import (
 	"fmt"
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+	"net/http"
 	"os"
+	"strconv"
 )
 
 // allCmd represents the all command
@@ -51,22 +52,23 @@ func init() {
 }
 
 func portfolioAssetsHistoryAll(cmd *cobra.Command, args []string) error {
-	token := viper.GetString("token")
-
-	result, err := requestAllAssets(token)
+	token, err := AccessTokenGetter()
 	cobra.CheckErr(err)
 
-	// Print to stdout
-	stdout := assetPrinter(result, portfolioPretty)
+	result, err := requestAllAssets(token, &client)
+	cobra.CheckErr(err)
+
+	stdout := GenericPrinter(result, portfolioPretty)
 	fmt.Println(stdout)
 
 	return nil
 }
 
-func requestAllAssets(token string) (AssetHistoryAll, error) {
-	var result AssetHistoryAll
+func requestAllAssets(token string, c *http.Client) (AssetHistoryAllDTO, error) {
+	var result AssetHistoryAllDTO
 	err := requests.
 		URL("/portfolio/assethistory/all/").
+		Client(c).
 		Param("limit", portfolioLimit).
 		Param("page", portfolioPage).
 		Param("type", portfolioOrderType).
@@ -82,11 +84,15 @@ func requestAllAssets(token string) (AssetHistoryAll, error) {
 		CheckStatus(200).
 		Fetch(context.Background())
 	if err != nil {
-		errCheck401(err.Error())
 		if !errCheck401(err.Error()) {
 			fmt.Println(err.Error())
 		}
 		os.Exit(-1)
 	}
+	page, _ := strconv.Atoi(portfolioPage)
+	pageSize, _ := strconv.Atoi(portfolioLimit)
+	metadata := CalculateMetadata(result.RecordCount, page, pageSize)
+	result.Metadata = metadata
+	result.RecordCount = 0
 	return result, nil
 }
