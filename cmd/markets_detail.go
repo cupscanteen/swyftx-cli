@@ -21,7 +21,6 @@ import (
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
 	"net/http"
-	"os"
 )
 
 // detailCmd represents the detail command
@@ -64,11 +63,10 @@ func requestInfoDetail(c *http.Client) (MarketsInfoDetailDTO, error) {
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		ToJSON(&result).
-		CheckStatus(200).
+		AddValidator(StatusChecker).
 		Fetch(context.Background())
 	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(-1)
+		return MarketsInfoDetailDTO{}, err
 	}
 	return result, nil
 }

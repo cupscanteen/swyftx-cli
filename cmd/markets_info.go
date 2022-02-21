@@ -22,7 +22,6 @@ import (
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
 	"net/http"
-	"os"
 )
 
 var marketsInfoCmd = &cobra.Command{
@@ -64,11 +63,10 @@ func requestBasicInfo(c *http.Client) (MarketsInfoBasicDTO, error) {
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		ToJSON(&result).
-		CheckStatus(200).
+		AddValidator(StatusChecker).
 		Fetch(context.Background())
 	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(-1)
+		return MarketsInfoBasicDTO{}, err
 	}
 	return result, nil
 }
