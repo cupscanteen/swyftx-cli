@@ -59,6 +59,6 @@ func writeApiKeyToConfig(apiKey string) error {
 	if err != nil {
 		return err
 	}
-	refreshToken()
+	refreshToken(&client)
 	return nil
 }

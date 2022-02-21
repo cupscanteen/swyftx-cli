@@ -22,6 +22,7 @@ import (
 	"github.com/carlmjohnson/requests"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"net/http"
 )
 
 var refreshCmd = &cobra.Command{
@@ -44,11 +45,11 @@ func init() {
 }
 
 func refresher(cmd *cobra.Command, args []string) error {
-	refreshToken()
+	refreshToken(&client)
 	return nil
 }
 
-func refreshToken() {
+func refreshToken(c *http.Client) {
 	apiKey := viper.GetString("apikey")
 
 	body := struct {
@@ -62,6 +63,7 @@ func refreshToken() {
 
 	err := requests.
 		URL("/auth/refresh/").
+		Client(c).
 		Host(SwyftxAPI).
 		ContentType("application/json").
 		BodyJSON(&body).
